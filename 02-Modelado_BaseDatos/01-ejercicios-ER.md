@@ -24,7 +24,7 @@ en un hospital se registra informacion de sus pacientes, de cada paciente se dec
 
 ## resultado modelo entidad relacion
 
-![Ejercicio1](../img/E-R/)
+![Ejercicio1](../img/E-R/Diagrama1_E-R.png)
 
 ### 2. ejercicio 2
 ---
@@ -53,6 +53,10 @@ se debe realizar lo sigueinte
 - determinar la cardinalidad
 - determinar la participacion 
 
+## resultado modelo entidad relacion
+
+![Ejercicio2](../img/E-R/Diagrama2_E-R.drawio.png)
+
 ### 3. ejercicio 3
 ---
 una escuela administra alumnos y materias
@@ -78,7 +82,9 @@ una escuela administra alumnos y materias
 >relacion 
 -   **inscribe** 
 
-![Ejercicio3](../img/E-R/DIagrama3.drawio.png)
+## resultado modelo entidad relacion
+
+![Ejercicio3](../img/E-R/Diagrama3_E-R.drawio.png)
 
 
 ### 4. ejercicio 4
@@ -111,3 +117,27 @@ una empresa encargada de realizar venta de productos:
 8. el detalle de pedido no existe sin producto
 9. el detalle almacena cantidad y precio de venta
 
+## resultado modelo entidad relacion
+
+![Ejercicio4](../img/E-R/Diagrama4_E-R.drawio.png)
+
+### 5. ejercicio 5
+---
+
+1. The company is organized into departments. Each department has a unique name, a 
+unique number, and a particular employee who manages the department.We keep track 
+of the start date when that employee began managing the department. A department 
+may have several locations. 
+2. A department controls a number of projects, each of which has a unique name, a unique 
+number, and a single location. 
+3. We store each employee's name, Social Security number, address, salary, sex (gender), 
+and birth date. An employee is assigned to one department, but may work on several 
+projects, which are not necessarily controlled by the same department. We keep track of 
+the current number of hours per week that an employee works on each project. We also 
+keep track of the direct supervisor of each employee (who is another employee). 
+4. We want to keep track of the dependents of each employee for insurance purposes.We 
+keep each dependent's first name, sex, birth date, and relationship to the employee. 
+
+## resultado modelo entidad relacion
+
+![Ejercicio5](../img/E-R/Diagrama5_E-R.drawio.png)

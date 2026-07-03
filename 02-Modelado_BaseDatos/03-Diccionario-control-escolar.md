@@ -83,4 +83,29 @@ Almacena los datos de los estudiantes
 | Tabla | Campo FK | Referencia |
 | :--- | :--- | :--- |
 | Alumno | id_carrera | Carrera(id_carrera) |
-| Alumno | id_carrera | Carrera(id_carrera) |
+| Materia | id_carrera | Carrera(id_carrera) |
+| Grupo | id_profesor | prfesor(id_profesor) |
+| Grupo | id_materia | materia(id_materia) |
+| Inscripcion | id_alumno | alumno(id_alumno) |
+| Inscripcion | id_grupo | grupo(id_grupo) |
+
+7. Integridad referencial
+
+| Codigo | Regla |
+| :--- | :--- |
+| IR-01 | No se puede registrar un alumno sin una carrera inexistente |
+| IR-02 | No se puede crear un grupo para una materia inexistente |
+| IR-03 | No se puede crear un grupo para un profesor inexistente |
+| IR-04 | No se puede inscribir un alumno en un grupo inexistente |
+| IR-05 | No se puede eliminar una carrera que tenga alumnos sin antes registrarlos o eliminarlos |
+
+8. reglas del nogocio
+
+| Codigo | Regla |
+| :--- | :--- |
+| RN-01 | Un alumno pertenece a una sola carrera |
+| RN-02 | Una carrera puede tener muchos alumnos |
+| RN-03 | Una carrera puede tener muchas materias |
+| RN-04 | Un profesor puede impartir varios grupos |
+| RN-05 | un grupo solo puede tener un profesor asignado |
+| RN-06 | La calificacion debe estar entre 0.0 y 10.0 |
