@@ -61,8 +61,8 @@ Almacena los datos de los estudiantes
 | nombre | VARCHAR | 30 | NN |  Nombre del alumno |
 | apellido_paterno | VARCHAR | 50 | NN |  Apellido paterno |
 | apellido_materno | VARCHAR| 50 | NULL | Apellido materno |
-| correo | DATE | - | NN | Correo del alumno |
-| fecha_nacimiento | VARCHAR | 100 | NULL | Fecha de nacimieto |
+| correo | VARCHAR | 100 | NN | Correo del alumno |
+| fecha_nacimiento | DATE | - | NULL | Fecha de nacimieto |
 | id_carrera | INT | - | FK, NN | Carrera de la persona |
 
 ---

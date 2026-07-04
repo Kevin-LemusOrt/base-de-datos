@@ -61,26 +61,26 @@ se debe realizar lo sigueinte
 ---
 una escuela administra alumnos y materias
 > de cada alumno almacena
-- matricula  
+- matricula
 - nombre
 - semestre
 
 > de cada materia se almacena
 - clave de la materia
-- nombre de la materia 
-- creditos 
+- nombre de la materia
+- creditos
 
-> reglas del negocio 
+> reglas del negocio
 1. un alumno puede inscribirse en varias materia
-2. una materia puede tener muchos alumnos inscritos 
+2. una materia puede tener muchos alumnos inscritos
 3. puede existir una materia sin alumnos inscritos
 4. todo alumno debe estar inscrito en al menos una materia
-5. de cada inscripcion se debe almacenar: 
-    - fecha de inscripcion 
+5. de cada inscripcion se debe almacenar:
+    - fecha de inscripcion
     - calificacion final
 
->relacion 
--   **inscribe** 
+>relacion
+-   **inscribe**
 
 ## resultado modelo entidad relacion
 
