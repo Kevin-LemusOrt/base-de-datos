@@ -55,7 +55,7 @@ GO
 CREATE TABLE alumno(
     alimno_id INT NOT NULL,
     CONSTRAINT pk_alumno
-    PRIMARY KEY (alimno_id)
+    PRIMARY KEY (alimno_id),
     nombre VARCHAR(30),
     apellido_paterno VARCHAR(20),
     apellido_materno VARCHAR(20),
@@ -156,7 +156,7 @@ DROP TABLE categoria
 
 CREATE TABLE categoria(
     categoria_id INT IDENTITY (1,1),
-    nombre VARCHAR(25) NOT NULL
+    nombre VARCHAR(25) NOT NULL,
     activo bit NOT NULL
     CONSTRAINT pk_categoria
     PRIMARY KEY(categoria_id),

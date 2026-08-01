@@ -1,4 +1,4 @@
-# construccion d eBase de datoc con SQL-LDD
+# construccion de bease de datoc con SQL-LDD
 
 SQL (Structured Query Lenguaje) se divide en cinco grandes categorias:
 
@@ -83,7 +83,7 @@ La razon es que funciona de manera consistente en **SQLServer**, **Mysql** y esp
 | FK | igual que la PK referenciada | cliente_id, producto_id |
 | Tabla puente | <tabla1>_<tabla2> | alumno_curo, provedor_producto |
 
-**NOmbrar las restricciones**
+**Nombrar las restricciones**
 
 - pk_cliente
 - fk_pedido_cliente -> pk_tablaorigen_tablareferenciada
