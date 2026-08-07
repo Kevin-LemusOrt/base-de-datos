@@ -125,4 +125,4 @@ GO
 
 ## Diagrama final
 
-"imagen"
+![Diagrama](../../img/Diagramas_DBeaver/comercializadora.png)
