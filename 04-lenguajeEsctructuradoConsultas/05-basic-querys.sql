@@ -158,5 +158,3 @@ SELECT
 FROM detalle_ventas AS dv;
 
 
-
-
