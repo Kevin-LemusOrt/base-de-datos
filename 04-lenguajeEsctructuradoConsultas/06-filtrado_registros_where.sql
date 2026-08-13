@@ -203,4 +203,4 @@ WHERE P.codigos LIKE `P000[^1-5]`;
 
 SELECT *
 FROM ciudades
-WHERE nombre LIKE ``
+WHERE nombre LIKE `[_]`
