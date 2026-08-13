@@ -110,3 +110,97 @@ FROM ventas AS v
 WHERE MONTH(fecha) = 4;
 
 -- seleccionar todas las ventas anteriores al 1 de febrero de 2025
+
+/*=========================operador like=====================================
+	Permite buscar buscar patrones dentro de valores de texto
+	sintaxis
+	WHERE columna LIKE patron
+	los patrones pueden contener comodines
+
+ 	comodin	Significado
+	 %		cero, wo o varias columna
+	 _		exactamente un caracter
+	 [abc]	un caracter incluido en la lista
+	 [a-f] 	un caracter incluido en el rango
+	 [^abc]	un caracter no incluido en la lista
+=============================================================*/
+
+-- comodin %
+-- el simbolo representa cualquier cantidad de caracteres incluyendo 0 caracteres
+
+--comienza
+--WHERE nombre LIKE ´Cliente%´
+--valores que comienzan con cliente
+
+--termina
+--WHERE correo LIKE ´%mail.com´
+--valores que terminan con mail.com
+
+--contiene
+--WHERE nombre Like ´%a%´
+--valores que contienen el caracter a en cualquier posicion
+
+-- buscar codigos de productos que comiencen con P001
+
+SELECT
+	p.codigos,
+	p.nombre,
+	p.precio,
+FROM productos AS p
+WHERE p.codigos LIKE `P001%`;
+
+--patrones con corchetes
+SELECT
+	P.Codigo,
+	P.nombre,
+	P.Precio
+FROM productos AS p
+WHERE P.codigos LIKE `P000[1-5]`;
+
+-- buscar los correos de los clientes que terminen exactamente con 10@mail.com
+SELECT 
+	c.id_cliente;
+	c.nombre;
+	c.correo
+FROM clientes AS c
+WHERE c.correo LIKE `%10@mail.com`;
+
+--mostrar los nombres que contiene el caracter 1
+
+SELECT 
+	p.codigos;
+	p.nombre;
+	p.precio
+FROM producto AS p
+WHERE p.nombre LIKE `%1%`;
+
+--comodin de un caracter
+-- el guino bajo representa exactamente un caracter
+
+--Mostrar los codigos con P00 y exactamente un caracter adicionar
+
+SELECT 
+	p.codigos;
+	p.nombre;
+	p.precio
+FROM producto AS p
+WHERE p.codigos LIKE `P000_`;
+
+SELECT
+	P.Codigo,
+	P.nombre,
+	P.Precio
+FROM productos AS p
+WHERE P.codigos LIKE `P000[^1-5]`;
+
+--buscar un guion bajo
+
+--en LIKE - es un comodin
+--las ciudades de esta base de datos contienen guiones bajo por ejemplo:
+
+--Ciudad_1_1
+--para buscar un guion bajo literar mediente corchetes se utiliza :
+
+SELECT *
+FROM ciudades
+WHERE nombre LIKE ``
