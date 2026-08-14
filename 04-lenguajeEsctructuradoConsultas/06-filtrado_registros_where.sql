@@ -1,22 +1,21 @@
-/*
+/*==================================================================================
+DQL (Data Query Languaje) en SQLServer
 
-SQL (Data Query Lenguaje) en SQLServer
-Archivo 04-filtrado_registros_where.sql
-Descripciom: Se recuperan inicamente las filas que cumplen determinadas condiciones
-mediante la clausura WHERE  
+Archivo: 06-filtrado-registros-where.sql
 
-Orden sintactico
+Descripción: Se rerecuperan únicamente las filas que cumplen determinadas
+condiciones mediante la clausla WHERE
 
-SELECT / TOP / DISTINCT
-FROM
-JOIN / ON
+ORDEN SINTÁCTICO:               
+FROM 
+JOINS/ON
 WHERE
 GROUP BY
-HAVING
+HAVING 
 ORDER BY
 
-ORDEN DE EJECUCION
-FORM / JOIN (existe el INNER, LEFT, WHITH, COROOS, FULL, SELF)
+ORDEN DE EJECUCIÓN:
+FROM / JOINS (INNER, LEFT, RIGHT, CROSS, FULL, SELF)
 WHERE
 GROUP BY
 HAVING
@@ -24,183 +23,257 @@ SELECT
 DISTINCT
 ORDER BY
 TOP
+====================================================================================*/
 
-*/
-
-/* ===================================
- *  Sintaxis
- 
- *  SELECT
- *		columna_1
- *		columna_2
- *		columna_n
- *	FROM nombre_tabla
- *	WHERE condicion;
- 
- *	Nota: condicion puede ser relacionar y a combinacion de esta con logica
- *	Nota: el SELECT mo filtra registros 
- =====================================*/
-
--- seleccionar el producto cuyo precio es $200
+/*====================================================================================
+Sintaxis:
 
 SELECT
-	p.codigos AS [Codigo],
-	P.nombre AS [Producto],
+	columna_1,
+	columna_2,
+	columna_n
+FROM nombre_tabla 
+WHERE condición;
+
+Nota: La condición puede ser relacional y combinación de esta con lógica
+Nota: El SELECT no filtra registrosm lo hacen otros comandos
+====================================================================================*/
+
+-- Seleccionar el producto cuyo precio es $200
+SELECT 
+	p.codigo AS [Código],
+	p.nombre AS [Producto],
 	p.precio AS [Precio]
 FROM productos AS p
 WHERE precio = 200;
 
--- seleccionar al cliente cuyo identificador es 25
+-- Seleccionar el cliente cuyo dientificadro es 25
+SELECT
+	c.id_cliente AS [ID],
+	c.nombre AS [Nombre],
+	c.apellido_paterno AS [Apellido paterno],
+	c.apellido_materno AS [Apellido materno],
+	c.fecha_nacimiento AS [Fecha de nacimiento],
+	c.id_ciudad AS [Ciudad],
+	c.sexo AS [Sexo],
+	c.telefono AS [Teléfono],
+	c.correo AS [Correo]
+FROM clientes AS c
+WHERE id_cliente = 25;
 
-SELECT 
+SELECT
 	c.id_cliente,
-	CONCAT(c.nombre, ' ',
-		c.apellido_paterno, ' ',
-		c.apellido_materno) AS nombre_completo,
-	c.correo
-FROM cliente AS c
+	CONCAT(c.nombre, '',
+	c.apellido_paterno, '',
+	c.apellido_paterno, '') AS [ClienteInfo]
+FROM clientes AS c
 WHERE c.id_cliente = 25;
 
--- comparacion de cadenas de texto
--- los valores de texto deben escribirse entre comillas simples 
-
+--Comparación de cadenas de texto
+--Los valores de texto debe escribirse entre comillas simples
+--Seleccionar las catégorías donde el nombre sea Cómputo
 SELECT 
-	ct.nombre AS [Categoria]
-FROM categorias AS ct
-WHERE ct.nombre= 'Cómputo';
+	c.nombre AS [Categoría]
+	
+FROM categorias AS c
+WHERE c.nombre = 'Cómputo';
 
--- seleccionar los datos del cliente con nombre Cliente1
--- seleccionar los datos delempleado que no pertenecan al departamento 1
--- seleccionar los datos de los productos donde sea superior a $490
--- seleccionar los datos de los productos con existencia critica a 10 unidades
--- seleccionar los datos de los empleados donde su salario sea de $30,000 en adelante
-
+--Seleccionar los datos del cliente con nombre Cliente1
 SELECT 
-	e.id_empleado,
-	e.nombre,
-	e.id_departamento,
-	e.salario 
-FROM empleados AS e
-WHERE salario >= 30000; 
--- seleccionar los datos datos de los productos donde sus precios sen de $10 o menos
--- comparacion de fechas
--- las fechas deben escribirse entre comillas simples, se recomienda el formato AAAA-MM-DD
--- seleccionar los datos de las ventas realizadas el 24 de diciembre de 2025
-
-SELECT 
-	v.id_venta,
-	v.fecha,
-	v.id_cliente,
-	v.id_empleado 
-FROM ventas AS v 
-WHERE fecha = '2005-12-24'
-
--- seleccionar los datos de las ventas realizadas en el mes de abril
-
-SELECT 
-	v.id_venta,
-	v.fecha,
-	v.fecha ,
-	YEAR(v.fecha) AS [Año],
-	MONTH(v.fecha ) AS [Mes],
-	DAT(v.fecha ) AS [Dia],
-	v.id_cliente,
-	v.id_empleado 
-FROM ventas AS v 
-WHERE MONTH(fecha) = 4;
-
--- seleccionar todas las ventas anteriores al 1 de febrero de 2025
-
-/*=========================operador like=====================================
-	Permite buscar buscar patrones dentro de valores de texto
-	sintaxis
-	WHERE columna LIKE patron
-	los patrones pueden contener comodines
-
- 	comodin	Significado
-	 %		cero, wo o varias columna
-	 _		exactamente un caracter
-	 [abc]	un caracter incluido en la lista
-	 [a-f] 	un caracter incluido en el rango
-	 [^abc]	un caracter no incluido en la lista
-=============================================================*/
-
--- comodin %
--- el simbolo representa cualquier cantidad de caracteres incluyendo 0 caracteres
-
---comienza
---WHERE nombre LIKE ´Cliente%´
---valores que comienzan con cliente
-
---termina
---WHERE correo LIKE ´%mail.com´
---valores que terminan con mail.com
-
---contiene
---WHERE nombre Like ´%a%´
---valores que contienen el caracter a en cualquier posicion
-
--- buscar codigos de productos que comiencen con P001
-
-SELECT
-	p.codigos,
-	p.nombre,
-	p.precio,
-FROM productos AS p
-WHERE p.codigos LIKE `P001%`;
-
---patrones con corchetes
-SELECT
-	P.Codigo,
-	P.nombre,
-	P.Precio
-FROM productos AS p
-WHERE P.codigos LIKE `P000[1-5]`;
-
--- buscar los correos de los clientes que terminen exactamente con 10@mail.com
-SELECT 
-	c.id_cliente;
-	c.nombre;
-	c.correo
+	c.nombre AS [Numero de cliente]
 FROM clientes AS c
-WHERE c.correo LIKE `%10@mail.com`;
+WHERE c.nombre = 'Cliente1';
 
---mostrar los nombres que contiene el caracter 1
-
+--Seleccionar los datos del empleado que no pertenezcan al departamento 1
 SELECT 
-	p.codigos;
-	p.nombre;
-	p.precio
-FROM producto AS p
-WHERE p.nombre LIKE `%1%`;
+	d.nombre
+FROM departamentos AS d
+WHERE d.nombre <> 'departamento 1';
 
---comodin de un caracter
--- el guino bajo representa exactamente un caracter
-
---Mostrar los codigos con P00 y exactamente un caracter adicionar
-
-SELECT 
-	p.codigos;
-	p.nombre;
-	p.precio
-FROM producto AS p
-WHERE p.codigos LIKE `P000_`;
-
+--Seleccionar los datos de los productos donse el precio sea superior a $490
 SELECT
-	P.Codigo,
-	P.nombre,
-	P.Precio
+	p.precio AS [Precio]
 FROM productos AS p
-WHERE P.codigos LIKE `P000[^1-5]`;
+WHERE p.precio > 490.0;
 
---buscar un guion bajo
+--Seleccionar los datos de los productos con existencia crítica inferior a $10 unidades
+SELECT
+	p.existencia AS [Existencia]
+FROM productos AS p
+WHERE p.existencia <= 10;
 
---en LIKE - es un comodin
---las ciudades de esta base de datos contienen guiones bajo por ejemplo:
+-- Seleccionar los datos de los empleados donde su salario sea de $30,000 en adelante
+SELECT 
+	e.salario AS [Salario]
+FROM empleados AS e
+WHERE e.salario < 30000;
 
---Ciudad_1_1
---para buscar un guion bajo literar mediente corchetes se utiliza :
+--Seleccionar los datos de los productos donde sus precios sean de $10 o menos
+SELECT
+	p.precio AS [Precio]
+FROM productos AS p
+WHERE p.precio <= 10;
 
-SELECT *
-FROM ciudades
-WHERE nombre LIKE `[_]`
+--Comparación de fechas
+--Las fechas deben escribirse entre comillas simples
+--Se recomienda el formato AAAA-MM-DD
+
+--Seleccionar los datos de las ventas realizadas del 24 de Dicimebre del 2025
+SELECT
+	v.id_venta,
+	v.id_cliente,
+	v.id_empleado,
+	v.fecha
+FROM ventas AS v
+WHERE fecha = '2025-12-24';
+
+--Seleccionar los datos de las ventas realizadas en los meses de Abril
+SELECT
+	v.id_venta,
+	v.id_cliente,
+	v.id_empleado,
+	v.fecha,
+	YEAR(v.fecha) AS [Año],
+	MONTH(v.fecha) AS [Mes],
+	DAY(v.fecha) AS [Día]
+FROM ventas AS v
+WHERE MONTH (fecha) = 4;
+
+--Seleccionar todas las ventas anteriores al primero de febrero del 2025
+SELECT
+	v.id_venta,
+	v.id_cliente,
+	v.id_empleado,
+	v.fecha,
+	YEAR(v.fecha) AS [Año],
+	MONTH(v.fecha) AS [Mes],
+	DAY(v.fecha) AS [Día]
+FROM ventas AS v
+WHERE fecha < '2025-02-01';
+
+-- Seleccionar las fechas anteriores al 1 de febrero del 2025
+SELECT
+	v.id_venta,
+	v.fecha,
+	YEAR(v.fecha) AS [AÑO],
+	MONTH(v.fecha) AS [MES],
+	DAY(v.fecha) AS [DÍA],
+	FORMAT (v.fecha, 'MMMM') AS [MES EN INGLÉS],
+	UPPER (FORMAT (v.fecha, 'MMMM', 'es-ES')) AS [MES EN ESPAÑOL],
+	FORMAT(v.fecha, 'MMMM') AS [MES ABREVIADO],
+	FORMAT(v.fecha, 'MMM', 'es-ES') AS [MES ABREVIADO],
+	FORMAT (v.fecha, 'dddd') AS [DÍA EN INLÉS],
+	FORMAT (v.fecha, 'dddd', 'es-ES') AS [DÍA EN INGLÉS],
+	v.id_cliente,
+	v.id_empleado
+FROM ventas AS v
+WHERE fecha < '2025-02-01';
+
+--DISTINCT
+--quita elementos repetidos de una o la combinación de columnas
+
+--Muestra los sexos de los clientes
+SELECT
+	sexo
+FROM CLIENTES AS c;
+
+SELECT DISTINCT
+	sexo	
+FROM CLIENTES AS c;
+
+
+SELECT DISTINCT
+	id_ciudad
+FROM clientes;
+
+SELECT COUNT(*)
+FROM ciudades;
+
+SELECT DISTINCT
+	cu.nombre
+FROM clientes AS c
+INNER JOIN ciudades AS cu
+ON c.id_ciudad = cu.id_ciudad;
+
+--Seleccionar los descuentos únicos de las ventas
+SELECT DISTINCT
+	dv.descuento
+FROM detalle_ventas AS dv
+ORDER BY dv.descuento DESC;
+
+SELECT DISTINCT
+	p.id_categoria,
+	p.id_proveedor
+FROM productos AS p;
+GO
+
+--TOP
+--Limita la cantidad de filas devueltas por una consulta
+SELECT 
+	dv.id_venta,
+	dv.precio,
+	dv.cantidad,
+	dv.descuento
+FROM detalle_ventas AS dv;
+
+SELECT TOP(10)
+	dv.id_venta,
+	dv.precio,
+	dv.cantidad,
+	dv.descuento
+FROM detalle_ventas AS dv;
+
+SELECT TOP(10) PERCENT
+	dv.id_venta,
+	dv.precio,
+	dv.cantidad,
+	dv.descuento
+FROM detalle_ventas AS dv;
+
+-- Seleccionar las fechas anteriores al 1 de febrero del 2025
+SELECT
+	v.id_venta,
+	v.fecha,
+	YEAR(v.fecha) AS [AÑO],
+	MONTH(v.fecha) AS [MES],
+	DAY(v.fecha) AS [DÍA],
+	FORMAT (v.fecha, 'MMMM') AS [MES EN INGLÉS],
+	UPPER (FORMAT (v.fecha, 'MMMM', 'es-ES')) AS [MES EN ESPAÑOL],
+	FORMAT(v.fecha, 'MMMM') AS [MES ABREVIADO],
+	FORMAT(v.fecha, 'MMM', 'es-ES') AS [MES ABREVIADO],
+	FORMAT (v.fecha, 'dddd') AS [DÍA EN INLÉS],
+	FORMAT (v.fecha, 'dddd', 'es-ES') AS [DÍA EN INGLÉS],
+	v.id_cliente,
+	v.id_empleado
+FROM ventas AS v
+WHERE fecha < '2025-02-01';
+
+--Seleccionar los datos de los productos mostrando el código 
+--y el valor del inventario, donde el valor del inventario debe ser mayor a 50000
+
+SELECT 
+	p.codigo AS codigo_producto,
+	p.existencia AS existencia,
+	p.precio AS precio,
+	(p.precio * p.existencia) AS valor_inventario
+FROM productos AS p
+WHERE (p.precio * p.existencia) > 50000;
+
+--Mostrar los productos con precio que estén entre $200 y $300
+SELECT 
+	p.codigo AS codigo_producto,
+	p.existencia AS existencia,
+	p.precio AS precio,
+	(p.precio * p.existencia) AS valor_inventario
+FROM productos AS p
+WHERE precio >= 200.0 AND precio <= 300.0;
+
+--Mostrar los productos con precio que estén entre $200 y $300 con BETWEEN
+--BETWEEN sólo funciona para rangos
+SELECT 
+	p.codigo AS codigo_producto,
+	p.existencia AS existencia,
+	p.precio AS precio,
+	(p.precio * p.existencia) AS valor_inventario
+FROM productos AS p
+WHERE precio BETWEEN 200.0 AND 300.0;
